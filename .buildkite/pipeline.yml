@@ -1,6 +1,14 @@
+# steps:
+#   - label: Example Test
+#     command: echo "Hello!"
+#     retry:
+#       manual:
+#         permit_on_passed: true
+
+
 steps:
-  - label: Example Test
-    command: echo "Hello!"
-    retry:
-      manual:
-        permit_on_passed: true
+  - command: yarn install && yarn run test
+    plugins:
+      docker#v1.1.1:
+        image: "node:8"
+        workdir: /app
