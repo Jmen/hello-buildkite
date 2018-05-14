@@ -1,5 +1,6 @@
 steps:
   - label: Example Test
     command: echo "Hello!"
-
-    
+    retry:
+      manual:
+        permit_on_passed: true
