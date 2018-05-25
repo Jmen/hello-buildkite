@@ -7,7 +7,7 @@
 
 
 steps:
-  - command: yarn install && yarn run test
+  - command: yarn install
     plugins:
       docker#v1.1.1:
         image: "node:8"
