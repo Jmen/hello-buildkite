@@ -8,11 +8,6 @@ VersionNumber=1.0.$2
 
 PackageFile=${Project}.${VersionNumber}.zip
 
-# Install dependencies
-
-apt-get update
-apt-get install zip -y
-
 # Create Octopus Package
 
 zip ${PackageFile} CloudFormation.yml
