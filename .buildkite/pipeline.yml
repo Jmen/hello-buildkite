@@ -1,5 +1,5 @@
 steps:
-  - command: bash ./.buildkite/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
+  - command: bash ./.scripts/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
     plugins:
       docker#v1.1.1:
         image: "node:8"
