@@ -1,7 +1,6 @@
 
 Project=$1
 VersionNumber=1.0.$2
-OctopusApiKey=$3
 
 PackageFile=${Project}.${VersionNumber}.zip
 
