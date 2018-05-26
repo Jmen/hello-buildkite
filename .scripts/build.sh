@@ -2,7 +2,7 @@
 project=$1
 versionNumber=$2
 
-zip ${project}.1.0.${versionNumber}.zip CloudFormation.yml
+echo zip ${project}.1.0.${versionNumber}.zip CloudFormation.yml
 
 # curl -X POST -H "X-Octopus-ApiKey: $OctopusApiKey" \
 # -F "file=@\"${project}.1.0.0.zip\";filename=\"${YourApp}.1.0.0.zip\";type=application/zip" \
