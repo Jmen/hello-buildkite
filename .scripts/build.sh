@@ -15,4 +15,8 @@ zip ${PackageFile} CloudFormation.yml
 
 # Upload to Octopus Package Library
 
-curl -X POST https://moonpig.octopus.com/api/packages/raw -H "X-Octopus-ApiKey: ${OctopusApiKey}" -F "data=@${PackageFile}"
+curl --request POST https://moonpig.octopus.com/api/packages/raw --header "X-Octopus-ApiKey: ${OctopusApiKey}" -F "data=@${PackageFile}"
+
+# Create a Release of the Project
+
+curl --request POST https://moonpig.octopus.com/api/releases --header "X-Octopus-ApiKey: ${OctopusApiKey}" --data '{ "Version":"${VersionNumber}", "ProjectId":"${Project}" }'
