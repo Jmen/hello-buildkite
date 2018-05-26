@@ -1,0 +1,6 @@
+[
+    {
+      "ParameterKey": "Environment",
+      "ParameterValue": "#{Octopus.Environment.Name}"
+    }
+  ]

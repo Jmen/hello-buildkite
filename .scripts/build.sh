@@ -4,7 +4,7 @@ VersionNumber=1.0.$2
 
 PackageFile=${Project}.${VersionNumber}.zip
 
-# Install dependencies - move to docker image creation
+# Install dependencies
 
 apt-get update
 apt-get install zip -y
