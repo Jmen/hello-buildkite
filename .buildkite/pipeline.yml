@@ -1,14 +1,9 @@
-# steps:
-#   - label: Example Test
-#     command: echo "Hello!"
-#     retry:
-#       manual:
-#         permit_on_passed: true
-
-
 steps:
-  - command: yarn install
+  - command: bash ./.buildkite/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
     plugins:
       docker#v1.1.1:
         image: "node:8"
         workdir: /app
+    retry:
+      manual:
+        permit_on_passed: true
