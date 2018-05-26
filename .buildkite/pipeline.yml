@@ -1,6 +1,6 @@
 steps:
   - label: Build and Create Release
-    command: bash ./.scripts/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
+    command: bash ./.scripts/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER $OctopusApiKey
     plugins:
       docker#v1.1.1:
         image: "microsoft/aspnetcore-build"
