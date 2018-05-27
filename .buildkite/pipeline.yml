@@ -1,24 +1,16 @@
 steps:
   - label: Build and Create Release
     command: bash ./.scripts/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
+    concurrency: 1
+    concurrency_group: "default"
     retry:
       manual:
         permit_on_passed: true
 
   - label: Deploy to Sandbox
     command: bash ./.scripts/deploy.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'sandbox'
+    concurrency: 1
+    concurrency_group: "default"
     retry:
       manual:
         permit_on_passed: true
-
-  # - label: Deploy to Non-Prod
-  #   command: bash ./.scripts/deploy.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'nonprod'
-  #   retry:
-  #     manual:
-  #       permit_on_passed: true
-
-  # - label: Run Tests
-  #   command: bash ./.scripts/test.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'nonprod'
-  #   retry:
-  #     manual:
-  #       permit_on_passed: true

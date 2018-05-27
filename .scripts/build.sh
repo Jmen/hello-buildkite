@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set script to stop on errors
+# set script to stop on errors - http://linuxcommand.org/lc3_man_pages/seth.html
 set -euo pipefail
 
 Project=$1
