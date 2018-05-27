@@ -4,3 +4,21 @@ steps:
     retry:
       manual:
         permit_on_passed: true
+
+  - label: Deploy to Sandbox
+    command: bash ./.scripts/deploy.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'sandbox'
+    retry:
+      manual:
+        permit_on_passed: true
+
+  # - label: Deploy to Non-Prod
+  #   command: bash ./.scripts/deploy.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'nonprod'
+  #   retry:
+  #     manual:
+  #       permit_on_passed: true
+
+  # - label: Run Tests
+  #   command: bash ./.scripts/test.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'nonprod'
+  #   retry:
+  #     manual:
+  #       permit_on_passed: true
