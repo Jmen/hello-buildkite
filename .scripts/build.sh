@@ -12,7 +12,7 @@ echo ------------------------
 echo Creating Octopus Package
 echo ------------------------
 
-zip $PackageFile CloudFormation.yml
+zip $PackageFile CloudFormation.yml params.json
 
 echo ---------------------------------
 echo Upload to Octopus Package Library
