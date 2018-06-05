@@ -12,7 +12,7 @@ steps:
   - wait
 
   - label: Package and Publish
-    command: ./.scripts/pack.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/pack.ps1 -VersionNumber $env:BUILDKITE_BUILD_NUMBER -Id $env:BUILDKITE_PIPELINE_SLUG -OctopusApiKey $env:OctopusApiKey"
     concurrency: 1
     concurrency_group: "default"
     agents:
