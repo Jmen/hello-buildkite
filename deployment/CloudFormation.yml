@@ -11,4 +11,4 @@ Resources:
     OctopusBucket:
         Type: "AWS::S3::Bucket"
         Properties: 
-          BucketName: !Sub 'jaimen-hello-build-kite-${AWS::Region}-${Environment}'
+          BucketName: !Sub 'jaimen-hello-build-kite-new-${AWS::Region}-${Environment}'
