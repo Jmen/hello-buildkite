@@ -10,7 +10,7 @@ steps:
   - wait
 
   - label: Package and Publish
-    command: test.cmd
+    command: test.ps1
     agents:
       os: "windows"
     retry:
