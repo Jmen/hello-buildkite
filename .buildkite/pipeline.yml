@@ -31,12 +31,59 @@ steps:
       manual:
         permit_on_passed: true
 
-  # - wait 
+  - label: Deploy to Sandbox - EU (Ireland)
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/deploy.ps1"
+    agents:
+      os: "windows"
+    env:
+      Tenant: "EU (Ireland)"
+      Environment: "sandbox"
+    retry:
+      manual:
+        permit_on_passed: true
 
-  # - label: Deploy to Non-Prod
-  #   command: ./.scripts/deploy.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey -Environment nonprod
-  #   agents:
-  #     os: "windows"
-  #   retry:
-  #     manual:
-  #       permit_on_passed: true
+  - label: Deploy to Sandbox - US East (N. Virginia)
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/deploy.ps1"
+    agents:
+      os: "windows"
+    env:
+      Tenant: "US East (N. Virginia)"
+      Environment: "sandbox"
+    retry:
+      manual:
+        permit_on_passed: true
+
+  - wait 
+
+  - label: Deploy to Sandbox - Asia Pacific (Sydney)
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/deploy.ps1"
+    agents:
+      os: "windows"
+    env:
+      Tenant: "Asia Pacific (Sydney)"
+      Environment: "nonprod"
+    retry:
+      manual:
+        permit_on_passed: true
+
+  - label: Deploy to Sandbox - EU (Ireland)
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/deploy.ps1"
+    agents:
+      os: "windows"
+    env:
+      Tenant: "EU (Ireland)"
+      Environment: "nonprod"
+    retry:
+      manual:
+        permit_on_passed: true
+
+  - label: Deploy to Sandbox - US East (N. Virginia)
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/deploy.ps1"
+    agents:
+      os: "windows"
+    env:
+      Tenant: "US East (N. Virginia)"
+      Environment: "nonprod"
+    retry:
+      manual:
+        permit_on_passed: true
