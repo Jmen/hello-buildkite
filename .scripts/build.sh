@@ -6,4 +6,4 @@ set -euo pipefail
 # yarn install
 # yarn run build
 
-buildkite-agent artifact upload ".deployment/**/*"
+buildkite-agent artifact upload "./deployment/**/*"
