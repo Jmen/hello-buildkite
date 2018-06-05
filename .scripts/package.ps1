@@ -6,4 +6,6 @@ buildkite-agent artifact download "*" .
 
 octo pack --version=$SemVer --format=zip --id=$Id --basePath ./deployment
 
-octo push --package=$Id.$SemVer.zip --apiKey=$OctopusApiKey --server=https://moonpig.octopus.com
+octo push --package=$Id.$SemVer.zip --server=https://moonpig.octopus.com --apiKey=$OctopusApiKey
+
+octo create-release --project $Id --version $SemVer --packageversion $SemVer --server https://moonpig.octopus.com --ApiKey $env:OctopusApiKey
