@@ -3,14 +3,44 @@ steps:
     command: bash ./.scripts/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
     concurrency: 1
     concurrency_group: "default"
+    agents:
+      os: "ubuntu-docker"
     retry:
       manual:
         permit_on_passed: true
 
-  - label: Deploy to Sandbox
-    command: bash ./.scripts/deploy.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER 'sandbox'
+  - wait
+
+  - label: Package and Publish
+    command: bash ./.scripts/pack.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey
     concurrency: 1
     concurrency_group: "default"
+    agents:
+      os: "windows"
     retry:
       manual:
         permit_on_passed: true
+
+  # - wait
+
+  # - label: Deploy to Sandbox
+  #   command: bash ./.scripts/deploy.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey -Environment sandbox
+  #   concurrency: 1
+  #   concurrency_group: "default"
+  #   agents:
+  #     os: "windows"
+  #   retry:
+  #     manual:
+  #       permit_on_passed: true
+
+  # - wait 
+
+  # - label: Deploy to Non-Prod
+  #   command: bash ./.scripts/deploy.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey -Environment nonprod
+  #   concurrency: 1
+  #   concurrency_group: "default"
+  #   agents:
+  #     os: "windows"
+  #   retry:
+  #     manual:
+  #       permit_on_passed: true
