@@ -1,8 +1,6 @@
 steps:
   - label: Build and Create Release
     command: bash ./.scripts/build.sh $BUILDKITE_PIPELINE_SLUG $BUILDKITE_BUILD_NUMBER
-    concurrency: 1
-    concurrency_group: "default"
     agents:
       os: "ubuntu-docker"
     retry:
@@ -12,9 +10,7 @@ steps:
   - wait
 
   - label: Package and Publish
-    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/pack.ps1 -VersionNumber $env:BUILDKITE_BUILD_NUMBER -Id $env:BUILDKITE_PIPELINE_SLUG -OctopusApiKey $env:OctopusApiKey"
-    concurrency: 1
-    concurrency_group: "default"
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/package.ps1 -VersionNumber $env:BUILDKITE_BUILD_NUMBER -Id $env:BUILDKITE_PIPELINE_SLUG -OctopusApiKey $env:OctopusApiKey"
     agents:
       os: "windows"
     retry:
@@ -25,8 +21,6 @@ steps:
 
   # - label: Deploy to Sandbox
   #   command: ./.scripts/deploy.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey -Environment sandbox
-  #   concurrency: 1
-  #   concurrency_group: "default"
   #   agents:
   #     os: "windows"
   #   retry:
@@ -37,8 +31,6 @@ steps:
 
   # - label: Deploy to Non-Prod
   #   command: ./.scripts/deploy.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey -Environment nonprod
-  #   concurrency: 1
-  #   concurrency_group: "default"
   #   agents:
   #     os: "windows"
   #   retry:
