@@ -1,12 +1,8 @@
-param (
-	[string]$VersionNumber = $(throw "VersionNumber parameter is required."),
-	[string]$Id = $(throw "Id parameter is required."),
-	[string]$OctopusApiKey = $(throw "OctopusApiKey parameter is required.")
-)
+$SemVer = "1.0." + $env:BUILDKITE_BUILD_NUMBER
+$Id = $env:BUILDKITE_PIPELINE_SLUG
+$OctopusApiKey = $env:OctopusApiKey
 
 buildkite-agent artifact download "*" .
-
-$SemVer = "1.0." + $versionNumber
 
 octo pack --version=$SemVer --format=zip --id=$Id --basePath ./deployment
 
