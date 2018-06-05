@@ -13,19 +13,23 @@ steps:
     command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/package.ps1"
     agents:
       os: "windows"
+
     retry:
       manual:
         permit_on_passed: true
 
-  # - wait
+  - wait
 
-  # - label: Deploy to Sandbox
-  #   command: ./.scripts/deploy.ps1 -VersionNumber $BUILDKITE_BUILD_NUMBER -Id $BUILDKITE_PIPELINE_SLUG -OctopusApiKey $OctopusApiKey -Environment sandbox
-  #   agents:
-  #     os: "windows"
-  #   retry:
-  #     manual:
-  #       permit_on_passed: true
+  - label: Deploy to Sandbox - Asia Pacific (Sydney)
+    command: powershell.exe -ExecutionPolicy Bypass -Command "./.scripts/deploy.ps1"
+    agents:
+      os: "windows"
+    env:
+      Tenant: "Asia Pacific (Sydney)"
+      Environment: "sandbox"
+    retry:
+      manual:
+        permit_on_passed: true
 
   # - wait 
 
